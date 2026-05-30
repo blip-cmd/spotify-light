@@ -7,40 +7,17 @@ const sections = ['#hero', '#how-it-works', '#how-to-use', '#community'];
 let currentSlideIndex = 0;
 
 // 1. Navigation Slide Handler
+// 1. Navigation Scroll Handler
 function goToSection(targetId) {
   const targetIndex = sections.indexOf(targetId);
   if (targetIndex === -1) return;
   
   currentSlideIndex = targetIndex;
   
-  // Update Slide Class
-  const slides = document.querySelectorAll('.slide');
-  slides.forEach(slide => {
-    slide.classList.remove('active-slide');
-  });
-  
-  const activeSlide = document.querySelector(targetId);
-  if (activeSlide) {
-    activeSlide.classList.add('active-slide');
+  const element = document.querySelector(targetId);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
   }
-  
-  // Update Navbar Links
-  const navLinks = document.querySelectorAll('.nav-link');
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href') === targetId) {
-      link.classList.add('active');
-    }
-  });
-
-  // Update Vertical Indicators
-  const indicators = document.querySelectorAll('.indicator');
-  indicators.forEach((ind, index) => {
-    ind.classList.remove('active');
-    if (index === targetIndex) {
-      ind.classList.add('active');
-    }
-  });
   
   // Dispatch a small tactile vibration if available
   if (navigator.vibrate) {
@@ -48,7 +25,7 @@ function goToSection(targetId) {
   }
 }
 
-// 2. Click Event Interceptions (Fix Navigation Standard Jump)
+// 2. Click Event Interceptions & Scroll Observation
 document.addEventListener('DOMContentLoaded', () => {
   // Setup Navbar click handlers
   const navLinks = document.querySelectorAll('.nav-link');
@@ -65,9 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Setup vertical dot indicator handlers
   const indicators = document.querySelectorAll('.indicator');
   indicators.forEach(ind => {
-    // Read the onclick or parse manual click
     ind.addEventListener('click', (e) => {
-      // Find the target from the onclick string or index
       const onclickAttr = ind.getAttribute('onclick');
       if (onclickAttr) {
         const match = onclickAttr.match(/goToSection\('(#[a-zA-Z0-9-]+)'\)/);
@@ -83,8 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const hash = window.location.hash;
   if (hash && sections.includes(hash)) {
     goToSection(hash);
-  } else {
-    goToSection('#hero');
   }
 
   // Populate dynamic share links on load
@@ -93,57 +66,46 @@ document.addEventListener('DOMContentLoaded', () => {
   // Load live statistics from APIs
   loadGitHubReleaseDownloads();
   loadInstallCount();
+
+  // Initialize Scroll Position Synchronization
+  setupScrollObserver();
 });
 
-// 3. High-Visibility Desktop Scroll Block & Modals
-const scrollModal = document.getElementById('scroll-modal');
+// 3. Intersection Observer to Sync Navbar & Indicators with Scroll Position
+function setupScrollObserver() {
+  const options = {
+    root: null,
+    rootMargin: '-30% 0px -50% 0px',
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = '#' + entry.target.getAttribute('id');
+        const targetIndex = sections.indexOf(id);
+        if (targetIndex !== -1) {
+          // Sync Nav links
+          document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === id);
+          });
+          
+          // Sync dot indicators
+          document.querySelectorAll('.indicator').forEach((ind, index) => {
+            ind.classList.toggle('active', index === targetIndex);
+          });
+        }
+      }
+    });
+  }, options);
+
+  document.querySelectorAll('.slide').forEach(slide => {
+    observer.observe(slide);
+  });
+}
+
+// 4. Modal Setup
 const shareModal = document.getElementById('share-modal');
-
-function openScrollModal() {
-  if (scrollModal && !scrollModal.classList.contains('active')) {
-    scrollModal.classList.add('active');
-    scrollModal.setAttribute('aria-hidden', 'false');
-  }
-}
-
-function closeScrollModal() {
-  if (scrollModal) {
-    scrollModal.classList.remove('active');
-    scrollModal.setAttribute('aria-hidden', 'true');
-  }
-}
-
-// Intercept desktop scrolling attempts
-window.addEventListener('wheel', (e) => {
-  if (window.innerWidth > 768) {
-    // If a share or scroll modal is currently open, let normal interactions work
-    if (scrollModal.classList.contains('active') || shareModal.classList.contains('active')) return;
-    
-    e.preventDefault();
-    openScrollModal();
-  }
-}, { passive: false });
-
-window.addEventListener('touchmove', (e) => {
-  if (window.innerWidth > 768) {
-    if (scrollModal.classList.contains('active') || shareModal.classList.contains('active')) return;
-    
-    e.preventDefault();
-    openScrollModal();
-  }
-}, { passive: false });
-
-window.addEventListener('keydown', (e) => {
-  if (window.innerWidth > 768) {
-    const blockedKeys = ['ArrowUp', 'ArrowDown', 'Space', 'PageUp', 'PageDown'];
-    if (blockedKeys.includes(e.key)) {
-      if (scrollModal.classList.contains('active') || shareModal.classList.contains('active')) return;
-      
-      e.preventDefault();
-      openScrollModal();
-    }
-  }
-});
 
 // 4. Share Feature Setup
 function openShareModal() {
