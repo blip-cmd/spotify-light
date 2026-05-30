@@ -1,0 +1,3 @@
+# Force GitHub Linguist to analyze the docs/ folder for repository language statistics
+docs/** linguist-documentation=false
+docs/** linguist-detectable=true
