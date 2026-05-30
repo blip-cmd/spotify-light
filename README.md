@@ -35,9 +35,9 @@ Spicetify **does not** support the Microsoft Store sandboxed version of Spotify.
    ```powershell
    cd "$env:APPDATA\spicetify\Themes"
    ```
-2. Clone this repository or create a directory named `Spotify-Light` and copy the `/theme` contents:
+2. Clone this repository directly as `Spotify-Light`:
    ```powershell
-   git clone https://github.com/hp/spotify-light Spotify-Light
+   git clone https://github.com/blip-cmd/spotify-light Spotify-Light
    ```
 3. Set the theme in your configuration and apply:
    ```powershell
@@ -51,8 +51,8 @@ Spicetify **does not** support the Microsoft Store sandboxed version of Spotify.
 ## 🎨 Customizing & Development
 
 If you want to edit color codes or visual parameters:
-- **Change Colors:** Modify color tokens inside `theme/color.ini`.
-- **Change Styles:** Modify styles inside `theme/user.css`.
+- **Change Colors:** Modify color tokens inside `color.ini`.
+- **Change Styles:** Modify styles inside `user.css`.
 - **Apply Changes:** Compile your changes by running:
   ```powershell
   spicetify apply
@@ -69,5 +69,6 @@ We welcome open-source contributions! Whether you want to fix a layout bug, prop
 ## 📄 License
 
 Distributed under the **GNU General Public License v3.0** (Copyleft). Anyone who modifies and distributes this software must also release their modifications under this same copyleft license and state the original as source. See [LICENSE](LICENSE) for details.
+
 
 

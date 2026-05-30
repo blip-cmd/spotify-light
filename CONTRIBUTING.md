@@ -9,7 +9,7 @@ By participating in this project, you agree to abide by our standards. Here is a
 ## 🧭 How to Contribute
 
 ### 1. Reporting Bugs
-- If you find a component that is not correctly themed, has bad contrast, or displays dark blocks, please search our [Issues](https://github.com/hp/spotify-light/issues) page to see if it has already been reported.
+- If you find a component that is not correctly themed, has bad contrast, or displays dark blocks, please search our [Issues](https://github.com/blip-cmd/spotify-light/issues) page to see if it has already been reported.
 - If it hasn't, open a new issue. Be sure to include:
   - Your operating system.
   - Your Spotify client version and Spicetify version.
@@ -32,7 +32,7 @@ Once you are ready to make a change:
    # or
    git checkout -b fix/context-menu-contrast
    ```
-4. Perform your modifications in `theme/color.ini` or `theme/user.css`.
+4. Perform your modifications in `color.ini` or `user.css`.
 5. Test your changes locally on your Spotify client by running `spicetify apply`.
 6. Commit your changes with clear, concise commit messages.
 7. Push your branch to your fork and submit a **Pull Request** to our `main` branch.
@@ -44,12 +44,13 @@ Once you are ready to make a change:
 To ensure the codebase remains clean, readable, and easy to maintain, please follow these guidelines:
 
 ### 1. CSS Standard
-- Use descriptive comments to organize sections inside `theme/user.css`.
+- Use descriptive comments to organize sections inside `user.css`.
 - Avoid hardcoded colors in `user.css`. Use Spicetify's mapped variable names (e.g., `var(--spice-main)`, `var(--spice-button)`) so that color changes are handled automatically.
 - Keep animations light and performant. Use hardware-accelerated properties (`transform`, `opacity`) and smooth easing values (`cubic-bezier`).
 - Maintain formatting with 2-space indentation and clean rulesets.
 
 ### 2. Color Schemes
-- If adding a new color scheme, append it directly as a new block inside `theme/color.ini` (e.g., `[teal-dream]`). Make sure all 15 variables are defined and mapped properly.
+- If adding a new color scheme, append it directly as a new block inside `color.ini` (e.g., `[teal-dream]`). Make sure all 15 variables are defined and mapped properly.
+
 
 
