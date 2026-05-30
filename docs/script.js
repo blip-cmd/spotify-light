@@ -89,6 +89,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Populate dynamic share links on load
   setupDynamicShareLinks();
+
+  // Load live statistics from APIs
+  loadGitHubReleaseDownloads();
+  loadInstallCount();
 });
 
 // 3. High-Visibility Desktop Scroll Block & Modals
@@ -235,6 +239,11 @@ function copyCode(codeElementId, buttonId) {
     // Smooth Scale Pop
     button.style.transform = 'translateY(-50%) scale(1.08)';
     
+    // Increment CountAPI installations on Step 4 Copy (clone & apply theme command)
+    if (codeElementId === 'code-step-4') {
+      trackInstallCount();
+    }
+    
     setTimeout(() => {
       button.innerText = 'Copy';
       button.classList.remove('copied');
@@ -243,6 +252,91 @@ function copyCode(codeElementId, buttonId) {
   }).catch(err => {
     console.error('Failed to copy: ', err);
   });
+}
+
+// 7. Live Download & Installation Stats API Tracking
+let gitHubDownloads = 0;
+let terminalInstalls = 0;
+
+function updateTotalCount() {
+  const total = gitHubDownloads + terminalInstalls;
+  const totalElem = document.getElementById('stat-total');
+  if (totalElem) {
+    totalElem.innerText = total.toLocaleString();
+  }
+}
+
+function loadGitHubReleaseDownloads() {
+  const url = "https://api.github.com/repos/blip-cmd/spotify-light/releases";
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      if (Array.isArray(data)) {
+        let count = 0;
+        data.forEach(release => {
+          if (Array.isArray(release.assets)) {
+            release.assets.forEach(asset => {
+              if (asset.download_count !== undefined) {
+                count += asset.download_count;
+              }
+            });
+          }
+        });
+        gitHubDownloads = count;
+        const downloadsElem = document.getElementById('stat-downloads');
+        if (downloadsElem) {
+          downloadsElem.innerText = count.toLocaleString();
+        }
+        updateTotalCount();
+      }
+    })
+    .catch(err => {
+      console.error("Error fetching GitHub release downloads: ", err);
+      // Fallback display if request is rate-limited or fails
+      const downloadsElem = document.getElementById('stat-downloads');
+      if (downloadsElem) downloadsElem.innerText = "0";
+    });
+}
+
+function loadInstallCount() {
+  const countKey = "spotify-light-custom-installs-key";
+  const url = `https://countapi.mileshilliard.com/api/v1/get/${countKey}`;
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      if (data && data.value !== undefined) {
+        terminalInstalls = data.value;
+        const installsElem = document.getElementById('stat-installs');
+        if (installsElem) {
+          installsElem.innerText = terminalInstalls.toLocaleString();
+        }
+        updateTotalCount();
+      }
+    })
+    .catch(err => {
+      console.error("Error fetching installation count: ", err);
+      // Fallback
+      const installsElem = document.getElementById('stat-installs');
+      if (installsElem) installsElem.innerText = "0";
+    });
+}
+
+function trackInstallCount() {
+  const countKey = "spotify-light-custom-installs-key";
+  const url = `https://countapi.mileshilliard.com/api/v1/hit/${countKey}`;
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      if (data && data.value !== undefined) {
+        terminalInstalls = data.value;
+        const installsElem = document.getElementById('stat-installs');
+        if (installsElem) {
+          installsElem.innerText = terminalInstalls.toLocaleString();
+        }
+        updateTotalCount();
+      }
+    })
+    .catch(err => console.error("Error updating installation counter: ", err));
 }
 
 

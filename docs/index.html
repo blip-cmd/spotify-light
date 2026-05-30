@@ -102,7 +102,34 @@
         </p>
         <div class="hero-actions">
           <button class="btn btn-primary" onclick="goToSection('#how-to-use')" id="hero-get-started-btn">Install Theme</button>
-          <button class="btn btn-secondary" onclick="goToSection('#how-it-works')" id="hero-learn-more-btn">Learn More</button>
+          <a href="https://github.com/blip-cmd/spotify-light/releases/download/v1.0.0/Spotify-Light.zip" class="btn btn-secondary" id="hero-download-zip-btn" target="_blank">
+            <span class="download-icon">📦</span> Download ZIP
+          </a>
+        </div>
+
+        <!-- Live Customization Statistics Dashboard -->
+        <div class="hero-stats">
+          <div class="stat-card">
+            <span class="stat-icon">📥</span>
+            <div class="stat-info">
+              <span class="stat-number" id="stat-downloads">0</span>
+              <span class="stat-label">ZIP Downloads</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <span class="stat-icon">⚡</span>
+            <div class="stat-info">
+              <span class="stat-number" id="stat-installs">0</span>
+              <span class="stat-label">PowerShell Installs</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <span class="stat-icon">🌌</span>
+            <div class="stat-info">
+              <span class="stat-number" id="stat-total">0</span>
+              <span class="stat-label">Total Customizations</span>
+            </div>
+          </div>
         </div>
       </div>
       <div class="hero-preview">
