@@ -189,6 +189,12 @@ function setupDynamicShareLinks() {
   if (waBtn) {
     waBtn.setAttribute('href', `https://api.whatsapp.com/send?text=${shareText}%20${siteUrl}`);
   }
+  
+  // Set Telegram Link
+  const tgBtn = document.getElementById('btn-share-tg');
+  if (tgBtn) {
+    tgBtn.setAttribute('href', `https://t.me/share/url?url=${siteUrl}&text=${shareText}`);
+  }
 }
 
 // 5. Accordions (How It Works)
