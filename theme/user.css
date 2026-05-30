@@ -1,0 +1,331 @@
+/* ==========================================================================
+   Spotify-Light Premium Theme CSS - Ultimate Light Profile Edition
+   ========================================================================== */
+
+/* Base font and global smoothing */
+:root {
+  --font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --transition-speed: 0.22s;
+  --transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(26, 32, 44, 0.06);
+  --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+  --hover-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+  --purple-gradient: linear-gradient(135deg, var(--spice-button) 0%, var(--spice-button-active) 100%);
+  --lyrics-gradient: linear-gradient(180deg, #F5E6FF 0%, #E6F0FA 100%);
+}
+
+/* Global resets for fonts and rendering */
+body, html, * {
+  font-family: var(--font-family) !important;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+/* Force light backgrounds globally */
+.Root__top-container,
+.main-home-homeHeader,
+.main-view-container,
+.main-home-home {
+  background-color: var(--spice-main) !important;
+}
+
+/* ==========================================================================
+   1. Clean Headers & Gradients (Prevent Muddy/Dark cover color extractions)
+   ========================================================================== */
+.main-entityHeader-container,
+.main-entityHeader-background,
+.main-entityHeader-overlay,
+.main-actionBarBackground-background {
+  background-color: transparent !important;
+  background-image: linear-gradient(to bottom, rgba(243, 244, 246, 0.5), var(--spice-main)) !important;
+}
+
+.main-entityHeader-backgroundColor {
+  background-color: var(--spice-main) !important;
+}
+
+/* ==========================================================================
+   2. Custom Play Buttons & Active Control Accents
+   ========================================================================== */
+.main-playButton-PlayButton, 
+.main-playButton-primary,
+[aria-label="Play"], 
+[aria-label="Pause"],
+.Button-sc-1g3kg7x-0.Button-small-buttonPrimary-useBrowserDefaultFocusVisible-useBrowserDefaultFocus {
+  background: var(--purple-gradient) !important;
+  border: none !important;
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.3) !important;
+  transition: all var(--transition-speed) var(--transition-easing) !important;
+}
+
+.main-playButton-PlayButton:hover, 
+.main-playButton-primary:hover,
+[aria-label="Play"]:hover, 
+[aria-label="Pause"]:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.45) !important;
+}
+
+/* Active icons and links */
+.main-topBar-buddyFeed, 
+.main-topBar-buddyFeedActive,
+.main-likeButton-button[aria-checked="true"],
+.main-addButton-active {
+  color: var(--spice-button) !important;
+}
+
+/* ==========================================================================
+   3. Cards, Library Items, & Grid Customization
+   ========================================================================== */
+.main-card-card, 
+.main-cardImage-imageWrapper, 
+.main-heroCard-heroCard {
+  border-radius: 14px !important;
+  background-color: var(--spice-card) !important;
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: var(--card-shadow) !important;
+  transition: all var(--transition-speed) var(--transition-easing) !important;
+}
+
+.main-card-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--hover-shadow) !important;
+  background-color: #FFFFFF !important;
+}
+
+/* Custom rounded cover art */
+.main-image-image,
+.main-cardImage-image {
+  border-radius: 10px !important;
+}
+
+/* ==========================================================================
+   4. Sidebars, Navigation, & Library Container
+   ========================================================================== */
+.main-navBar-navBar {
+  background-color: var(--spice-sidebar) !important;
+  border-right: 1px solid var(--glass-border) !important;
+}
+
+.main-navBar-navBarLinkActive, 
+.main-navBar-navBarLink:focus,
+.main-yourLibraryX-navLinkActive {
+  background-color: rgba(124, 58, 237, 0.08) !important;
+  color: var(--spice-button) !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+}
+
+/* Active navigation item indicator */
+.main-navBar-navBarLinkActive::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 25%;
+  height: 50%;
+  width: 4px;
+  background-color: var(--spice-button) !important;
+  border-radius: 0 4px 4px 0;
+}
+
+/* ==========================================================================
+   5. Context Menus & Dropdowns (Ultimate Light Refresh)
+   ========================================================================== */
+.main-contextMenu-menu,
+.main-contextMenu-menuItem,
+.dropdown-menu,
+.main-userWidget-dropdown {
+  background-color: #FFFFFF !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08) !important;
+  padding: 6px !important;
+}
+
+.main-contextMenu-menuItemButton,
+.main-userWidget-dropdownItemButton,
+.main-contextMenu-menuItemButton:link,
+.main-contextMenu-menuItemButton:visited {
+  color: var(--spice-text) !important;
+  border-radius: 6px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  transition: background-color var(--transition-speed) var(--transition-easing) !important;
+}
+
+.main-contextMenu-menuItemButton:hover,
+.main-userWidget-dropdownItemButton:hover {
+  background-color: rgba(124, 58, 237, 0.06) !important;
+  color: var(--spice-button) !important;
+}
+
+/* Context menu separator */
+.main-contextMenu-divider {
+  background-color: rgba(0, 0, 0, 0.06) !important;
+  height: 1px !important;
+  margin: 6px 0 !important;
+}
+
+/* ==========================================================================
+   6. Tooltips & Popovers (No Black Blocks)
+   ========================================================================== */
+.tooltip,
+._tooltip,
+div[role="tooltip"],
+.main-nowPlayingView-aboutArtistModal {
+  background-color: #FFFFFF !important;
+  color: var(--spice-text) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
+  border-radius: 8px !important;
+  padding: 6px 12px !important;
+  font-weight: 500 !important;
+  font-size: 11px !important;
+}
+
+/* ==========================================================================
+   7. Lyrics Viewer (Stunning Lavender Pastel Profile)
+   ========================================================================== */
+.main-lyrics-lyricsContainer,
+.lyrics-lyrics-background,
+.main-lyrics-lyrics-background {
+  background-image: var(--lyrics-gradient) !important;
+  background-color: #F5E6FF !important;
+}
+
+.main-lyrics-lyrics-lyric,
+.lyrics-lyrics-content,
+.lyrics-lyricsContent-lyric,
+.main-lyrics-lyricsContent {
+  color: rgba(26, 32, 44, 0.45) !important;
+  font-weight: 700 !important;
+  font-size: 32px !important;
+  letter-spacing: -0.02em !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Highlighted Active Lyric */
+.main-lyrics-lyricsHighlight,
+.lyrics-lyricsContent-active,
+.main-lyrics-lyrics-lyricActive {
+  color: #1A202C !important;
+  font-weight: 800 !important;
+  text-shadow: 0 0 1px rgba(124, 58, 237, 0.2) !important;
+  transform: scale(1.02) !important;
+}
+
+/* ==========================================================================
+   8. Settings Panel & Dialogs
+   ========================================================================== */
+.main-settings-page,
+.main-settings-header,
+.main-trackCreditsModal-container,
+.main-dialog-container,
+.main-dialog-dialog {
+  background-color: #FFFFFF !important;
+  color: var(--spice-text) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--hover-shadow) !important;
+}
+
+/* Settings drop-downs and input elements */
+.main-dropDown-dropDown,
+.main-settings-checkbox,
+.main-settings-checkboxInput {
+  background-color: #FFFFFF !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  color: var(--spice-text) !important;
+  border-radius: 6px !important;
+}
+
+.main-dropDown-dropDown:focus {
+  border-color: var(--spice-button) !important;
+}
+
+/* Slider Toggle Switch */
+.main-settings-toggle[aria-checked="true"] {
+  background-color: var(--spice-button) !important;
+}
+
+/* ==========================================================================
+   9. Player Control Bar & Progress Sliders
+   ========================================================================== */
+.main-nowPlayingBar-container {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  border-top: 1px solid var(--glass-border) !important;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.02) !important;
+  padding: 12px 24px !important;
+}
+
+.playback-bar .progress-bar,
+.x-progressBar-progressBar {
+  --bg-color: rgba(124, 58, 237, 0.12) !important;
+  --fg-color: var(--spice-button) !important;
+  border-radius: 4px !important;
+}
+
+.playback-bar .progress-bar__slider,
+.x-progressBar-slider {
+  background-color: var(--spice-button-active) !important;
+  box-shadow: 0 2px 6px rgba(124, 58, 237, 0.35) !important;
+}
+
+/* Track list item hovers and rounded rows */
+.main-trackList-trackListRow {
+  border-radius: 8px !important;
+  transition: all 0.12s ease !important;
+  border: 1px solid transparent !important;
+}
+
+.main-trackList-trackListRow:hover {
+  background-color: rgba(124, 58, 237, 0.04) !important;
+  border: 1px solid rgba(124, 58, 237, 0.02) !important;
+}
+
+.main-trackList-trackListRowActive,
+.main-trackList-trackListRowActive:hover {
+  background-color: rgba(124, 58, 237, 0.07) !important;
+  color: var(--spice-button) !important;
+}
+
+/* ==========================================================================
+   10. Rounded Search Box & Inputs
+   ========================================================================== */
+.main-searchBar-searchInput,
+.SearchInput-sc-1hnbyso-0 {
+  border-radius: 24px !important;
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.01) !important;
+  background-color: #FFFFFF !important;
+  color: var(--spice-text) !important;
+  transition: all var(--transition-speed) var(--transition-easing) !important;
+}
+
+.main-searchBar-searchInput:focus,
+.SearchInput-sc-1hnbyso-0:focus {
+  border-color: var(--spice-button) !important;
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.12) !important;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 7px !important;
+  height: 7px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(124, 58, 237, 0.12) !important;
+  border-radius: 4px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 58, 237, 0.25) !important;
+}
+
+
