@@ -142,7 +142,7 @@ function copyShareLink() {
 
 function setupDynamicShareLinks() {
   const siteUrl = encodeURIComponent(window.location.href.split('#')[0]);
-  const shareText = encodeURIComponent("Check out Spotify-Light - a premium glassmorphic light theme for Spotify! Clean HSL aesthetics, lavender gradients, and fully customized components.");
+  const shareText = encodeURIComponent("Check out Spotify-Light - a premium glassmorphic light theme for the Spotify Desktop App! Clean HSL aesthetics, lavender gradients, and fully customized components.");
   
   // Set X (Twitter) Link
   const xBtn = document.getElementById('btn-share-x');
