@@ -458,12 +458,30 @@ div[role="tooltip"],
 }
 
 /* Force Light Card Backgrounds on Normal and Hover */
-.main-card-card {
-  background-color: var(--spice-card) !important;
+.main-card-card,
+.main-heroCard-heroCard,
+.main-card-card:hover,
+.main-card-card:focus-within,
+.main-card-card[data-context-menu-open="true"],
+.main-card-card[data-is-active="true"],
+.main-heroCard-heroCard:hover {
+  background-color: #FFFFFF !important;
+  background: #FFFFFF !important;
+  box-shadow: var(--hover-shadow) !important;
 }
 
-.main-card-card:hover {
-  background-color: #FFFFFF !important;
+/* Ensure all child elements except image have transparent background */
+.main-card-card .main-card-PlayButtonContainer,
+.main-card-card .main-card-PlayButtonContainer *,
+.main-card-card .main-cardHeader-text,
+.main-card-card .main-cardHeader-text *,
+.main-card-card .main-cardSubHeader-text,
+.main-card-card .main-cardSubHeader-text *,
+.main-card-card a,
+.main-card-card span,
+.main-card-card p {
+  background-color: transparent !important;
+  background: transparent !important;
 }
 
 /* Prevent cover art image overlay from turning dark/blurry */
