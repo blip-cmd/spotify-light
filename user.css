@@ -326,8 +326,97 @@ div[role="tooltip"],
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(124, 58, 237, 0.25) !important;
+  border-radius: 4px !important;
 }
 
+/* ==========================================================================
+   11. Advanced Button & Icon Hover/Drag Overlays (No Muddy or Dark Blurs)
+   ========================================================================== */
+
+/* Tracklist Row Drag & Drop Overlay States */
+.main-trackList-rowDragOver {
+  background-color: rgba(124, 58, 237, 0.08) !important;
+  border: 1px dashed var(--spice-button) !important;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.1) !important;
+}
+
+.main-trackList-rowDragOver * {
+  color: var(--spice-button) !important;
+}
+
+/* Eliminate Dark Blur overlays on Card and Image Covers */
+.main-cardImage-imageWrapper::after {
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.main-cardImage-imageWrapper:hover::after {
+  background-color: rgba(124, 58, 237, 0.04) !important;
+}
+
+/* 
+   Comprehensive Hover Overrides for Control Icons and Action Buttons
+   Ensures soft lavender-violet circular overlays instead of dark/blurry backgrounds
+*/
+.main-playControls-button:hover,
+.main-nowPlayingBar-extraControls button:hover,
+.control-button:hover,
+.x-playerSC-button:hover,
+.main-topBar-button:hover,
+.main-topBar-historyButtons button:hover,
+.main-buddyFeed-buddyFeedButton:hover,
+.main-addButton-button:hover,
+.main-likeButton-button:hover,
+.main-moreButton-button:hover,
+.main-userWidget-box:hover,
+.main-userWidget-chevron:hover,
+.x-searchBar-searchBarIcon:hover {
+  background-color: rgba(124, 58, 237, 0.08) !important;
+  color: var(--spice-button) !important;
+  transform: scale(1.04) !important;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.1) !important;
+  border-radius: 50% !important;
+  backdrop-filter: none !important; /* Eliminate dark muddy blurs */
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Secondary Button Premium Customization */
+.Button-sc-1g3kg7x-0.Button-medium-buttonSecondary,
+.Button-sc-1g3kg7x-0.Button-small-buttonSecondary,
+.main-buttons-secondary {
+  background-color: var(--spice-sidebar) !important;
+  color: var(--spice-text) !important;
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: var(--card-shadow) !important;
+  transition: all var(--transition-speed) var(--transition-easing) !important;
+}
+
+.Button-sc-1g3kg7x-0.Button-medium-buttonSecondary:hover,
+.Button-sc-1g3kg7x-0.Button-small-buttonSecondary:hover,
+.main-buttons-secondary:hover {
+  background-color: #FFFFFF !important;
+  color: var(--spice-button) !important;
+  border-color: var(--spice-button) !important;
+  box-shadow: var(--hover-shadow) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Tertiary Button Premium Customization */
+.Button-sc-1g3kg7x-0.Button-medium-buttonTertiary,
+.Button-sc-1g3kg7x-0.Button-small-buttonTertiary,
+.main-buttons-tertiary {
+  background-color: transparent !important;
+  color: var(--spice-subtext) !important;
+  transition: all var(--transition-speed) var(--transition-easing) !important;
+}
+
+.Button-sc-1g3kg7x-0.Button-medium-buttonTertiary:hover,
+.Button-sc-1g3kg7x-0.Button-small-buttonTertiary:hover,
+.main-buttons-tertiary:hover {
+  background-color: rgba(124, 58, 237, 0.06) !important;
+  color: var(--spice-button) !important;
+}
 
 
 
