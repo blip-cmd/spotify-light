@@ -418,5 +418,68 @@ div[role="tooltip"],
   color: var(--spice-button) !important;
 }
 
+/* ==========================================================================
+   12. Card Hover Overlays & Text Contrast Polish (No Dark/Muddy Covers)
+   ========================================================================== */
+
+/* Force all text inside card components to remain highly readable on light backgrounds */
+.main-card-card,
+.main-card-card .main-cardHeader-text,
+.main-card-card .main-cardHeader-text *,
+.main-card-card a,
+.main-card-card p,
+.main-card-card h3,
+.main-card-card span {
+  color: var(--spice-text) !important;
+}
+
+.main-card-card .main-cardSubHeader-text,
+.main-card-card .main-cardSubHeader-text *,
+.main-card-card .main-card-description,
+.main-card-card .main-card-description * {
+  color: var(--spice-subtext) !important;
+}
+
+/* Hover States for Card components and their children */
+.main-card-card:hover,
+.main-card-card:hover *,
+.main-card-card:hover a,
+.main-card-card:hover p,
+.main-card-card:hover h3,
+.main-card-card:hover span {
+  color: var(--spice-text) !important;
+}
+
+.main-card-card:hover .main-cardSubHeader-text,
+.main-card-card:hover .main-cardSubHeader-text *,
+.main-card-card:hover .main-card-description,
+.main-card-card:hover .main-card-description * {
+  color: var(--spice-subtext) !important;
+}
+
+/* Force Light Card Backgrounds on Normal and Hover */
+.main-card-card {
+  background-color: var(--spice-card) !important;
+}
+
+.main-card-card:hover {
+  background-color: #FFFFFF !important;
+}
+
+/* Prevent cover art image overlay from turning dark/blurry */
+.main-cardImage-imageWrapper::after,
+.main-cardImage-overlay,
+.main-card-PlayButtonContainer,
+.main-card-overlay {
+  background-color: transparent !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.main-cardImage-imageWrapper:hover::after {
+  background-color: rgba(124, 58, 237, 0.04) !important;
+}
+
 
 
